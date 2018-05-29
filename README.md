@@ -7,9 +7,9 @@ Install terraform and ansible and make sure you have the avi config role install
 ## Usage
 Export the following variables as environment variables.
 
-*TF_VAR_access_key - AWS access key
-*TF_VAR_secret_key - AWS secret key
-*TF_VAR_password - Avi Controller password
+* TF_VAR_access_key - AWS access key
+* TF_VAR_secret_key - AWS secret key
+* TF_VAR_password - Avi Controller password
 
 The name can be anything you like, shouldn't be to long.
 
