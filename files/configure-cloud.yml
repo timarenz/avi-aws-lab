@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    avi_credentials:
+      controller: "{{ avi_controller }}"
+      username: "{{ avi_username }}"
+      password: "{{ avi_password }}"
+      api_version: 17.2.3
+  roles:
+    - role: avinetworks.avisdk
+  tasks:
+    - name: Waiting for Controller API to become available
+      uri:
+        url: "https://{{ avi_controller }}/api/cluster"
+        method: GET
+        validate_certs: False
+        return_content: True
+        status_code: 200, 401
+      register: result
+      until: result.content.find("Authentication credentials were not provided.") != -1
+      retries: 240
+      delay: 5
+    - name: Configure AWS cloud
+      set_fact:
+        avi_config:
+          cloud:
+            - name: "Default-Cloud"   
+              api_version: 17.2.3
+              vtype: CLOUD_AWS
+              dhcp_enabled: true
+              license_type: "LIC_CORES"
+              aws_configuration:
+                region: "eu-central-1"
+                use_iam_roles: True
+                vpc: "{{ vpc_name }}"
+                vpc_id: "{{ vpc_id }}"
+                zones:
+                  - availability_zone: "{{ private_subnet_az }}"
+                    mgmt_network_name: "{{ private_subnet_name }}"
+    - name: Apply Avi configuration
+      import_role:
+        name: avinetworks.aviconfig
+      vars:
+        avi_config: "{{avi_config}}"
