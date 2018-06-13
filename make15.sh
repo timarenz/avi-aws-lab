@@ -1,5 +1,13 @@
 #!/bin/bash
-for i in {1..15}
+
+environment_name="cisco"
+
+for i in 1 5 10
 do
-  make apply environment=frey-$i
+  make apply environment=$environment_name-$i &
+  make apply environment=$environment_name-$(expr $i + 1) &
+  make apply environment=$environment_name-$(expr $i + 2) &
+  make apply environment=$environment_name-$(expr $i + 3) &
+  make apply environment=$environment_name-$(expr $i + 4) &
+  wait
 done
