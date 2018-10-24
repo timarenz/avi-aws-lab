@@ -35,7 +35,7 @@ output "public_subnet_az" {
 }
 
 module "avicontroller" {
-  source = "github.com/timarenz/tf_aws_avicontroller"
+  source = "github.com/timarenz/tf-aws-avicontroller"
 
   public_key = "${file("lab.key.pub")}"
 
@@ -65,7 +65,7 @@ output "client_public_ip" {
 
 resource "null_resource" "avi_cloud" {
   depends_on = ["module.avicontroller"]
-  
+
   provisioner "local-exec" {
     command = "ansible-playbook files/configure-cloud.yml --extra-vars 'avi_controller=${module.avicontroller.public_ip[0]} avi_username=admin avi_password=${var.password} vpc_name=${module.vpc.vpc_name} vpc_id=${module.vpc.vpc_id} private_subnet_az=${module.vpc.vpc_private_subnet_az} private_subnet_name=${module.vpc.vpc_private_subnet_name}'"
   }

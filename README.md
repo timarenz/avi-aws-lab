@@ -1,4 +1,4 @@
-# Lab Build Template for Frey
+# Avi AWS Lab Build Template
 
 ## Prereqs
 
@@ -17,11 +17,11 @@ First initialize the environment using `make init`.
 
 After this is done run `make` or `make apply` using the parameter "environment=name".
 
-    Example: make environment=frey-lab
+    Example: make environment=my-lab
 
 This will apply the terraform configuration and deploy the controller, some perf server clients and so on.
 
-To destroy the environment run `make destroy environment=frey-lab`
+To destroy the environment run `make destroy environment=my-lab`
 
 ## Build multiple environments
 Use `make15.sh` and `destroy15.sh`as an example on how to build/destroy multiple environments at once.
