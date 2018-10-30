@@ -2,7 +2,7 @@
 
 ## Prereqs
 
-Install terraform and ansible and make sure you have the avi config role installed: https://github.com/avinetworks/ansible-role-aviconfig
+Install terraform and ansible and make sure you have the avi config role installed: https://github.com/avinetworks/ansible-role-aviconfig. Also make sure you have prereqs (curl, jq) installed for https://github.com/timarenz/terraform-aws-avicontroller.
 
 ## Usage
 Export the following variables as environment variables.

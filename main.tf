@@ -35,13 +35,13 @@ output "public_subnet_az" {
 }
 
 module "avicontroller" {
-  source = "github.com/timarenz/tf-aws-avicontroller"
+  source = "github.com/timarenz/terraform-aws-avicontroller"
 
   public_key = "${file("lab.key.pub")}"
 
-  #ami_id            = "ami-20de614f" #17.1.9
-  #ami_id            = "ami-0463e66b" #17.2.3
-  # ami_id = "ami-0566086a" #17.2.7
+  # ami_id         = "ami-20de614f" #17.1.9
+  # ami_id         = "ami-0463e66b" #17.2.3
+  # ami_id         = "ami-0566086a" #17.2.7
 
   subnet_id        = "${module.vpc.vpc_public_subnet_id}"
   password         = "${var.password}"
