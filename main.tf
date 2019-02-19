@@ -6,7 +6,7 @@ provider "aws" {
 
 # lab 1
 module "vpc" {
-  source           = "github.com/timarenz/tf_aws_vpc"
+  source           = "github.com/timarenz/terraform-aws-vpc"
   environment_name = "${var.environment}"
 }
 
@@ -53,7 +53,7 @@ output "avicontroller_public_ip" {
 }
 
 module "perf_server_client" {
-  source            = "github.com/timarenz/tf_aws_perf_server_client"
+  source            = "github.com/timarenz/terraform-aws-perf-server-client"
   public_subnet_id  = "${module.vpc.vpc_public_subnet_id}"
   private_subnet_id = "${module.vpc.vpc_private_subnet_id}"
   environment_name  = "${var.environment}"

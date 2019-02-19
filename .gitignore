@@ -5,6 +5,10 @@
 *.out
 *.retry
 *.info
+.DS_Store
+env.sh
 
 # Module directory
 .terraform/
+state/*
+outputs/*
